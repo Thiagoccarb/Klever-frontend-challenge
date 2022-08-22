@@ -1,9 +1,7 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
-import Home from './pages/Home';
-import InitialPage from './pages/InitialPage';
-import NotFound from './pages/NotFound';
+import { Home, InitialPage, NotFound } from './pages';
 
 function AppRoutes() {
   return (
