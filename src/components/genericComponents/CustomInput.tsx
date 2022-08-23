@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
-import { Input, InputLabel } from '@mui/material';
+import { TextField, InputLabel } from '@mui/material';
 import useStyles from '../../styles/styles';
 
 type Props = {
@@ -9,6 +9,7 @@ type Props = {
   name: string;
   value: string;
   onChange: (e: React.SyntheticEvent) => void;
+  error: boolean;
 }
 
 function AddToken(props: Props) {
@@ -16,6 +17,7 @@ function AddToken(props: Props) {
     label: labelName,
     value,
     name,
+    error,
     onChange,
   } = props;
   const {
@@ -30,13 +32,14 @@ function AddToken(props: Props) {
       >
         {labelName}
       </InputLabel>
-      <Input
+      <TextField
+        error={error}
         value={value}
         name={name}
         onChange={onChange}
         className={input}
         fullWidth
-        disableUnderline
+        helperText={error && 'required field!'}
       />
     </Grid>
   );
