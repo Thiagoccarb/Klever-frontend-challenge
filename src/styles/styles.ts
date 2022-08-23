@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   header: {
     display: 'flex',
     justifyContent: 'center',
-    padding: '100px 0',
+    padding: '50px 0',
   },
   main: {
     backgroundColor: '#13152A',
@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
     '@media (min-width:800px)': {
       margin: '20px 0 20px 80px',
     },
+  },
+  gridAddToken: {
+    margin: '20px 0',
   },
   inputContainer: {
     margin: '20px 0 20px 10vw',

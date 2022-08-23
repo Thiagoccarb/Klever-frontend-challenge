@@ -26,7 +26,7 @@ const theme = createTheme({
       margin: 0,
       padding: 0,
       '@media (max-width:400px)': {
-        fontSize: '1rem',
+        fontSize: '20px',
       },
     },
   },

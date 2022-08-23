@@ -60,11 +60,12 @@ span {
   margin: auto;
   justify-content: space-between;
   align-items: center;
-  max-width: 50vw;
+  width: 70vw;
+  max-width: 500px;
 }
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 550px) {
   #wallet-container {
-    max-width: 80vw;
+    flex-direction: column;
   }
 }
 
@@ -73,6 +74,11 @@ span {
   width: 50vw;
   max-width: 500px;
   flex-direction: column;
+}
+@media screen and (max-width: 500px) {
+  #add-token-container {
+    width: 90vw;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */

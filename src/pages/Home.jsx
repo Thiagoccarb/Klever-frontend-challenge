@@ -9,7 +9,7 @@ import {
 } from '../components/genericComponents';
 
 function Home() {
-  const { primaryButton } = useStyles();
+  const { primaryButton, gridAddToken } = useStyles();
   return (
     <Grid
       container
@@ -17,11 +17,17 @@ function Home() {
       id="wallet-container"
     >
       <WishWallet />
-      <CustomButton
-        className={primaryButton}
+      <Grid
+        item
+        className={gridAddToken}
       >
-        Add Token
-      </CustomButton>
+
+        <CustomButton
+          className={primaryButton}
+        >
+          Add Token
+        </CustomButton>
+      </Grid>
     </Grid>
   );
 }
