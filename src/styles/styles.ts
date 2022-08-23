@@ -55,6 +55,9 @@ const useStyles = makeStyles((theme) => ({
   gridAddToken: {
     margin: '20px 0',
   },
+  gridSaveToken: {
+    textAlign: 'right',
+  },
   inputContainer: {
     margin: '20px 0 20px 10vw',
     '@media (min-width:800px)': {

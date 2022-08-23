@@ -19,9 +19,9 @@ function AddToken() {
   const {
     h3,
     gridItem,
+    gridSaveToken,
     primaryButton,
     secondaryButton,
-    warningButton,
   } = useStyles();
 
   const handleChange = (e: React.SyntheticEvent) => {
@@ -63,13 +63,8 @@ function AddToken() {
       />
       <Grid
         item
-        className={gridItem}
+        className={gridSaveToken}
       >
-        <CustomButton
-          className={warningButton}
-        >
-          Remove
-        </CustomButton>
         <CustomButton
           className={primaryButton}
         >
