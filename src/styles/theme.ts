@@ -6,7 +6,7 @@ const paletteTheme = createTheme({
       main: '#AA33B5',
     },
     secondary: {
-      main: '#13152A',
+      main: '#646464',
     },
     warning: {
       main: '#920000',
