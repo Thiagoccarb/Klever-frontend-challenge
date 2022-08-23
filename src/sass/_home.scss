@@ -1,0 +1,10 @@
+#wallet-container {
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 50vw;
+
+  @media screen and (max-width: 1024px) {
+    max-width: 80vw;
+  }
+}

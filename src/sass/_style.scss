@@ -19,7 +19,7 @@ h5,
 h6,
 li,
 span {
-  font-weight: normal !important;
+  font-weight: normal;
   color: $color-primary;
   font-family: $font;
   margin: 0;
@@ -29,8 +29,19 @@ span {
 
 h1 {
   font-size: 5vmin;
+
+  &.secondary {
+    color: $color-secondary;
+    text-align: center;
+    margin: 200px 0;
+  }
+
 }
 
 span {
   font-size: 3vmin;
+}
+
+.bold {
+  font-weight: bold;
 }

@@ -16,7 +16,7 @@ h5,
 h6,
 li,
 span {
-  font-weight: normal !important;
+  font-weight: normal;
   color: #fff;
   font-family: Shoika Regular, sans-serif;
   margin: 0;
@@ -27,9 +27,45 @@ span {
 h1 {
   font-size: 5vmin;
 }
+h1.secondary {
+  color: #000;
+  text-align: center;
+  margin: 200px 0;
+}
 
 span {
   font-size: 3vmin;
+}
+
+.bold {
+  font-weight: bold;
+}
+
+#wish-wallet-container {
+  width: auto;
+  align-items: center;
+}
+#wish-wallet-container #star-logo {
+  width: 10vw;
+  min-width: 30px;
+  max-width: 80px;
+}
+
+#logo {
+  width: 30vmin;
+  min-width: 150px;
+}
+
+#wallet-container {
+  margin: auto;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 50vw;
+}
+@media screen and (max-width: 1024px) {
+  #wallet-container {
+    max-width: 80vw;
+  }
 }
 
 /*# sourceMappingURL=styles.css.map */
