@@ -45,6 +45,7 @@ function EditToken() {
         </Typography>
         <CustomButton
           className={secondaryButton}
+          onClick={() => { }}
         >
           Voltar
         </CustomButton>
@@ -54,12 +55,14 @@ function EditToken() {
         name="token"
         value={data.token}
         onChange={handleChange}
+        error={false}
       />
       <CustomInput
         label="Balance"
         name="balance"
         value={data.balance}
         onChange={handleChange}
+        error={false}
       />
       <Grid
         item
@@ -67,11 +70,15 @@ function EditToken() {
       >
         <CustomButton
           className={warningButton}
+          onClick={() => { }}
+
         >
           Remove
         </CustomButton>
         <CustomButton
           className={primaryButton}
+          onClick={() => { }}
+
         >
           Save
         </CustomButton>
