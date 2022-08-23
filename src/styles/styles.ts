@@ -65,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   input: {
-    '&.MuiInputBase-root': {
+    '& .MuiInputBase-root': {
       backgroundColor: '#fff',
       borderRadius: '5px',
       fontFamily: [
@@ -73,9 +73,19 @@ const useStyles = makeStyles((theme) => ({
         'sans-serif',
       ].join(','),
       fontWeight: 700,
+      fontSize: '1rem',
+      '&.Mui-focused fieldset': {
+        borderColor: '#13152A',
+      },
     },
     '& .MuiInputBase-input': {
-      marginLeft: '5px',
+      padding: '10px',
+    },
+    '& .MuiOutlinedInput-notchedOutline': {
+      border: 'transparent',
+    },
+    '& .MuiFormHelperText-root': {
+      marginLeft: 0,
     },
   },
   label: {
