@@ -10,14 +10,13 @@ import useStyles from '../styles/styles';
 function InitialPage() {
   const { header, main } = useStyles();
   const { pathname } = useLocation();
-  const isHome = pathname === '/tokens';
   return (
     <Grid
       component="main"
       className={main}
     >
       {
-        !isHome
+        pathname === '/'
         && <Navigate to="/tokens" />
       }
       <Grid
