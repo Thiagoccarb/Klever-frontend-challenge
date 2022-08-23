@@ -14,8 +14,12 @@ interface Data {
   balance: string;
 }
 
+const TOKENS = 'tokens';
+
 function AddToken() {
   const [data, setData] = React.useState<Data>({ token: '', balance: '' });
+  const [error, setError] = React.useState<boolean>(false);
+
   const {
     h3,
     gridItem,
@@ -27,6 +31,24 @@ function AddToken() {
   const handleChange = (e: React.SyntheticEvent) => {
     const { name, value } = e.target as HTMLInputElement;
     setData({ ...data, [name]: value });
+  };
+
+  const validateFields = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const isValid = Object.values(data)
+      .every(([, value]) => !!value);
+    setError(!isValid);
+  };
+
+  const saveToken = () => {
+    let newTokens;
+    const tokens = localStorage.getItem(TOKENS) || '';
+    if (!tokens) {
+      newTokens = [{ id: data.token, token: data.token, balance: data.balance }];
+      return localStorage.setItem('tokens', JSON.stringify(newTokens));
+    }
+    newTokens = [...JSON.parse(tokens), { id: data.token, ...data }];
+    return localStorage.setItem('tokens', JSON.stringify(newTokens));
   };
 
   return (
@@ -45,32 +67,38 @@ function AddToken() {
         </Typography>
         <CustomButton
           className={secondaryButton}
+          onClick={() => { }}
         >
           Voltar
         </CustomButton>
       </Grid>
-      <CustomInput
-        label="Token"
-        name="token"
-        value={data.token}
-        onChange={handleChange}
-      />
-      <CustomInput
-        label="Balance"
-        name="balance"
-        value={data.balance}
-        onChange={handleChange}
-      />
-      <Grid
-        item
-        className={gridSaveToken}
-      >
-        <CustomButton
-          className={primaryButton}
+      <form onSubmit={validateFields}>
+        <CustomInput
+          error={error}
+          label="Token"
+          name="token"
+          value={data.token}
+          onChange={handleChange}
+        />
+        <CustomInput
+          error={error}
+          label="Balance"
+          name="balance"
+          value={data.balance}
+          onChange={handleChange}
+        />
+        <Grid
+          item
+          className={gridSaveToken}
         >
-          Save
-        </CustomButton>
-      </Grid>
+          <CustomButton
+            className={primaryButton}
+            onClick={saveToken}
+          >
+            Save
+          </CustomButton>
+        </Grid>
+      </form>
     </Grid>
   );
 }
