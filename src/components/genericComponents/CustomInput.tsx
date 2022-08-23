@@ -12,7 +12,7 @@ type Props = {
   error: boolean;
 }
 
-function AddToken(props: Props) {
+function CustomInput(props: Props) {
   const {
     label: labelName,
     value,
@@ -39,10 +39,10 @@ function AddToken(props: Props) {
         onChange={onChange}
         className={input}
         fullWidth
-        helperText={error && 'required field!'}
+        helperText={error && !value && 'required field!'}
       />
     </Grid>
   );
 }
 
-export default AddToken;
+export default CustomInput;
