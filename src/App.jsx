@@ -1,11 +1,16 @@
 import * as React from 'react';
+import { ThemeProvider } from '@material-ui/core';
+import theme from './styles/theme';
+
 import AppRoutes from './Routes';
 
 import './styles/styles.css';
 
 function App() {
   return (
-    <AppRoutes />
+    <ThemeProvider theme={theme}>
+      <AppRoutes />
+    </ThemeProvider>
   );
 }
 
