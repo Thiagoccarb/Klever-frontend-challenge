@@ -7,6 +7,7 @@ import {
   WishWallet,
   CustomButton,
   CustomInput,
+  CustomCurrencyInput,
 } from '../components/genericComponents';
 
 interface Data {
@@ -80,12 +81,12 @@ function AddToken() {
           value={data.token}
           onChange={handleChange}
         />
-        <CustomInput
-          error={error}
+        <CustomCurrencyInput
           label="Balance"
           name="balance"
           value={data.balance}
           onChange={handleChange}
+          error={error}
         />
         <Grid
           item
