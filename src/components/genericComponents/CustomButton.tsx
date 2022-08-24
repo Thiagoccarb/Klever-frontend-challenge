@@ -5,7 +5,7 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 function CustomButton(props: PropsWithChildren<{
   children: string;
   className: string;
-  onClick: () => void;
+  onClick?: () => void;
 }>) {
   const { children, ...buttonProps } = props;
   return (
@@ -19,3 +19,7 @@ function CustomButton(props: PropsWithChildren<{
 }
 
 export default CustomButton;
+
+CustomButton.defaultProps = {
+  onClick: () => { },
+};
