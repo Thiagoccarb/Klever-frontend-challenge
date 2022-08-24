@@ -3,6 +3,8 @@ import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
 import useStyles from '../styles/styles';
 
+import { getLocalStorageKey, saveData } from '../helpers/util';
+
 import {
   WishWallet,
   CustomButton,
@@ -41,15 +43,12 @@ function AddToken() {
     setError(!isValid);
   };
 
-  const saveToken = () => {
-    let newTokens;
-    const tokens = localStorage.getItem(TOKENS) || '';
-    if (!tokens) {
-      newTokens = [{ id: data.token, token: data.token, balance: data.balance }];
-      return localStorage.setItem('tokens', JSON.stringify(newTokens));
-    }
-    newTokens = [...JSON.parse(tokens), { id: data.token, ...data }];
-    return localStorage.setItem('tokens', JSON.stringify(newTokens));
+  const saveTokenData = () => {
+    const tokens = getLocalStorageKey(TOKENS);
+    const newTokens = !tokens
+      ? [{ id: data.token, token: data.token, balance: data.balance }]
+      : [...tokens, { id: data.token, ...data }];
+    return saveData(newTokens);
   };
 
   return (
@@ -94,7 +93,7 @@ function AddToken() {
         >
           <CustomButton
             className={primaryButton}
-            onClick={saveToken}
+            onClick={saveTokenData}
           >
             Save
           </CustomButton>

@@ -25,8 +25,8 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#13152A',
     height: '-webkit-fill-available',
   },
-  h1: {
-    fontWeight: 700,
+  h2: {
+    marginLeft: '50px',
   },
   h3: {
     fontWeight: 700,
@@ -47,13 +47,27 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: '20px 0 20px 10vw',
+    margin: '0 0 0 10vw',
     '@media (min-width:800px)': {
-      margin: '20px 0 20px 80px',
+      margin: '0 0 0 80px',
     },
   },
+  gridHomeSecondaryHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    margin: '30px  0 0 0',
+  },
+  gridHomeBody: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: '100%',
+    margin: '10px  0',
+  },
   gridAddToken: {
-    margin: '20px 0',
+    margin: '20px  0',
   },
   gridSaveToken: {
     textAlign: 'right',

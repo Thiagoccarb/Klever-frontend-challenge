@@ -21,12 +21,32 @@ const theme = createTheme({
       'sans-serif',
     ].join(','),
     h1: {
-      fontSize: '5vmin',
-      color: '#fff',
-      margin: 0,
       padding: 0,
+      margin: 0,
+      color: '#fff',
+      fontSize: '5vmin',
+      fontWeight: 700,
       '@media (max-width:400px)': {
         fontSize: '20px',
+      },
+    },
+    h2: {
+      padding: 0,
+      margin: 0,
+      color: '#fff',
+      fontSize: '4vmin',
+      fontWeight: 700,
+      '@media (max-width:400px)': {
+        fontSize: '18px',
+      },
+    },
+    h4: {
+      padding: 0,
+      margin: 0,
+      color: '#fff',
+      fontSize: '2vmin',
+      '@media (max-width:400px)': {
+        fontSize: '10px',
       },
     },
   },
