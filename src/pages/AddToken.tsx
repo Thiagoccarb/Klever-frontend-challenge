@@ -12,6 +12,7 @@ import {
   CustomButton,
   CustomInput,
   CustomCurrencyInput,
+  Loading,
 } from '../components/genericComponents';
 
 interface Data {
@@ -25,6 +26,7 @@ function AddToken() {
   const navigate = useNavigate();
   const [data, setData] = React.useState<Data>({ token: '', balance: '' });
   const [error, setError] = React.useState<boolean>(false);
+  const [isLoading, setLoading] = React.useState<boolean>(false);
 
   const {
     h3,
@@ -44,6 +46,12 @@ function AddToken() {
     const isValid = Object.values(data)
       .every(([, value]) => !!value);
     setError(!isValid);
+    return isValid;
+  };
+
+  const handleLoadingModal = () => {
+    setLoading(true);
+    return setTimeout(() => setLoading(false), 2000);
   };
 
   const saveTokenData = () => {
@@ -54,6 +62,14 @@ function AddToken() {
     return saveData(newTokens);
   };
 
+  const submit = (e: React.FormEvent<HTMLFormElement>) => {
+    const isValidFields = validateFields(e);
+    if (!isValidFields) return null;
+    saveTokenData();
+    handleLoadingModal();
+    return setTimeout(() => navigate('/tokens'), 2000);
+  };
+
   return (
     <Grid
       container
@@ -61,10 +77,7 @@ function AddToken() {
       id="add-token-container"
     >
       <WishWallet />
-      <Grid
-        item
-        className={gridItem}
-      >
+      <Grid item className={gridItem}>
         <Typography component="h3" className={h3}>
           Add Token
         </Typography>
@@ -75,7 +88,7 @@ function AddToken() {
           Voltar
         </CustomButton>
       </Grid>
-      <form onSubmit={validateFields}>
+      <form onSubmit={submit}>
         <CustomInput
           error={error}
           label="Token"
@@ -90,18 +103,13 @@ function AddToken() {
           onChange={handleChange}
           error={error}
         />
-        <Grid
-          item
-          className={gridSaveToken}
-        >
-          <CustomButton
-            className={primaryButton}
-            onClick={saveTokenData}
-          >
+        <Grid item className={gridSaveToken}>
+          <CustomButton className={primaryButton}>
             Save
           </CustomButton>
         </Grid>
       </form>
+      <Loading open={isLoading} />
     </Grid>
   );
 }
