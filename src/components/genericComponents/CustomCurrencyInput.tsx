@@ -28,7 +28,7 @@ function CustomCurrencyInput(props: Props) {
     label,
   } = useStyles();
   return (
-    <Grid item className={inputContainer}>
+    <>
       <InputLabel
         className={label}
       >
@@ -43,7 +43,7 @@ function CustomCurrencyInput(props: Props) {
         fullWidth
         helperText={error && !value && 'required field!'}
       />
-    </Grid>
+    </>
   );
 }
 

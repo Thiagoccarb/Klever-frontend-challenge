@@ -65,6 +65,12 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     width: 'auto',
   },
+  gridItemFlexColumn: {
+    display: 'flex',
+    alignItems: 'center',
+    width: '100%',
+    margin: '10px 0',
+  },
   gridHomeSecondaryHeader: {
     display: 'flex',
     alignItems: 'center',
@@ -118,6 +124,21 @@ const useStyles = makeStyles((theme) => ({
   label: {
     '&.MuiFormLabel-root': {
       color: 'white',
+    },
+  },
+  gridModal: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    bgcolor: 'background.paper',
+    border: '2px solid #000',
+    boxShadow: '24px',
+  },
+  modal: {
+    '& .MuiBackdrop-root': {
+      backdropFilter: 'blur(10px)',
+      backgroundColor: 'rgb(0 0 0 / 90%)',
     },
   },
 }));

@@ -80,5 +80,8 @@ span {
     width: 90vw;
   }
 }
+#add-token-container form {
+  width: 100%;
+}
 
 /*# sourceMappingURL=styles.css.map */

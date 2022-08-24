@@ -26,7 +26,7 @@ function CustomInput(props: Props) {
     label,
   } = useStyles();
   return (
-    <Grid item className={inputContainer}>
+    <>
       <InputLabel
         className={label}
       >
@@ -41,7 +41,7 @@ function CustomInput(props: Props) {
         fullWidth
         helperText={error && !value && 'required field!'}
       />
-    </Grid>
+    </>
   );
 }
 

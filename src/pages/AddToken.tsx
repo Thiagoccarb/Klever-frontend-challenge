@@ -15,6 +15,8 @@ import {
   Loading,
 } from '../components/genericComponents';
 
+import { UpdateTokenModal } from '../components/modals';
+
 interface Data {
   token: string;
   balance: string;
@@ -27,6 +29,10 @@ function AddToken() {
   const [data, setData] = React.useState<Data>({ token: '', balance: '' });
   const [error, setError] = React.useState<boolean>(false);
   const [isLoading, setLoading] = React.useState<boolean>(false);
+  const [isOpenModal, setModal] = React.useState<boolean>(false);
+
+  const tokensRef = React.useRef(getLocalStorageKey(TOKENS));
+  const { current: tokens } = tokensRef;
 
   const {
     h3,
@@ -34,12 +40,24 @@ function AddToken() {
     gridSaveToken,
     primaryButton,
     secondaryButton,
+    inputContainer,
   } = useStyles();
 
   const handleChange = (e: React.SyntheticEvent) => {
     const { name, value } = e.target as HTMLInputElement;
     setData({ ...data, [name]: value });
   };
+
+  const checkExistingToken = () => {
+    if (!tokens) return false;
+    return tokens
+      .map(({ token }) => token)
+      .includes(data.token);
+  };
+
+  const openUpdateTokenModal = () => setModal(true);
+
+  const closeUpdateTokenModal = () => setModal(false);
 
   const validateFields = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -55,17 +73,39 @@ function AddToken() {
   };
 
   const saveTokenData = () => {
-    const tokens = getLocalStorageKey(TOKENS);
     const newTokens = !tokens
       ? [{ id: data.token, token: data.token, balance: data.balance }]
       : [...tokens, { id: data.token, ...data }];
     return saveData(newTokens);
   };
 
+  const updateExistingTokenData = () => {
+    const updatedTokens = tokens?.map((item) => {
+      if (item.token === data.token) {
+        return { ...item, balance: data.balance };
+      }
+      return item;
+    });
+    return saveData(updatedTokens);
+  };
+
   const submit = (e: React.FormEvent<HTMLFormElement>) => {
     const isValidFields = validateFields(e);
     if (!isValidFields) return null;
+    const existingToken = checkExistingToken();
+    if (existingToken) {
+      openUpdateTokenModal();
+      return null;
+    }
     saveTokenData();
+    handleLoadingModal();
+    return setTimeout(() => navigate('/tokens'), 2000);
+  };
+
+  const updateToken = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    updateExistingTokenData();
+    closeUpdateTokenModal();
     handleLoadingModal();
     return setTimeout(() => navigate('/tokens'), 2000);
   };
@@ -89,20 +129,24 @@ function AddToken() {
         </CustomButton>
       </Grid>
       <form onSubmit={submit}>
-        <CustomInput
-          error={error}
-          label="Token"
-          name="token"
-          value={data.token}
-          onChange={handleChange}
-        />
-        <CustomCurrencyInput
-          label="Balance"
-          name="balance"
-          value={data.balance}
-          onChange={handleChange}
-          error={error}
-        />
+        <Grid item className={inputContainer}>
+          <CustomInput
+            error={error}
+            label="Token"
+            name="token"
+            value={data.token}
+            onChange={handleChange}
+          />
+        </Grid>
+        <Grid item className={inputContainer}>
+          <CustomCurrencyInput
+            label="Balance"
+            name="balance"
+            value={data.balance}
+            onChange={handleChange}
+            error={error}
+          />
+        </Grid>
         <Grid item className={gridSaveToken}>
           <CustomButton className={primaryButton}>
             Save
@@ -110,6 +154,13 @@ function AddToken() {
         </Grid>
       </form>
       <Loading open={isLoading} />
+      <UpdateTokenModal
+        open={isOpenModal}
+        closeModal={closeUpdateTokenModal}
+        value={data.balance}
+        onChange={handleChange}
+        updateToken={updateToken}
+      />
     </Grid>
   );
 }

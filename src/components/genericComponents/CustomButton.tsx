@@ -5,13 +5,14 @@ import ButtonUnstyled from '@mui/base/ButtonUnstyled';
 function CustomButton(props: PropsWithChildren<{
   children: string;
   className: string;
+  type?: 'submit' | 'button' | 'reset' | undefined;
   onClick?: () => void;
 }>) {
-  const { children, ...buttonProps } = props;
+  const { children, type, ...buttonProps } = props;
   return (
     <ButtonUnstyled
       {...buttonProps}
-      type="submit"
+      type={type}
     >
       {children}
     </ButtonUnstyled>
@@ -22,4 +23,5 @@ export default CustomButton;
 
 CustomButton.defaultProps = {
   onClick: () => { },
+  type: 'submit',
 };
