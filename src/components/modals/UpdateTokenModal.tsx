@@ -28,7 +28,7 @@ export default function UpdateTokenModal({
     warningButton,
     modal,
     gridModal,
-    gridHomeBody,
+    gridItemFlexSpaceBetween,
   } = useStyles();
   return (
     <Modal
@@ -56,7 +56,7 @@ export default function UpdateTokenModal({
               onChange={onChange}
               error={false}
             />
-            <Grid item className={gridHomeBody}>
+            <Grid item className={gridItemFlexSpaceBetween}>
               <CustomButton
                 className={primaryButton}
                 type="button"

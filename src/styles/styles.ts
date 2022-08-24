@@ -1,7 +1,7 @@
 import { makeStyles, Theme } from '@material-ui/core';
 import { alpha } from '@material-ui/core/styles/colorManipulator';
 
-const buttonStyles = (theme: Theme) => ({
+const buttonStyles = (theme: Theme, color: string) => ({
   border: 'none',
   color: '#fff',
   padding: 10,
@@ -11,7 +11,7 @@ const buttonStyles = (theme: Theme) => ({
   width: '100px',
   '&:hover': {
     cursor: 'pointer',
-    backgroundColor: alpha(theme.palette.primary.main, 0.9),
+    backgroundColor: alpha(color, 0.9),
   },
 });
 
@@ -25,11 +25,11 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#13152A',
     height: '-webkit-fill-available',
   },
-  h2: {
-    marginLeft: '32px',
-  },
   h3: {
     fontWeight: 700,
+  },
+  marginLeft: {
+    marginLeft: '32px',
   },
   editIcon: {
     '&.MuiSvgIcon-root': {
@@ -41,24 +41,28 @@ const useStyles = makeStyles((theme) => ({
   },
   primaryButton: {
     backgroundColor: theme.palette.primary.main,
-    ...buttonStyles(theme),
+    ...buttonStyles(theme, theme.palette.primary.main),
   },
   secondaryButton: {
     backgroundColor: theme.palette.secondary.main,
-    ...buttonStyles(theme),
+    ...buttonStyles(theme, theme.palette.secondary.main),
   },
   warningButton: {
     backgroundColor: theme.palette.warning.main,
-    ...buttonStyles(theme),
+    ...buttonStyles(theme, theme.palette.secondary.main),
   },
-  gridItem: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+  gridAddTokenBody: {
     margin: '20px 0 0 10vw',
     '@media (min-width:800px)': {
       margin: '0 0 0 80px',
     },
+  },
+  gridItemFlexSpaceBetween: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    margin: '10px  0',
+    alignItems: 'center',
   },
   gridItemFlex: {
     display: 'flex',
@@ -67,35 +71,18 @@ const useStyles = makeStyles((theme) => ({
   },
   gridItemFlexColumn: {
     display: 'flex',
-    alignItems: 'center',
+    flexDirection: 'column',
     width: '100%',
     margin: '10px 0',
   },
-  gridHomeSecondaryHeader: {
+  gridItemFlexFlexEnd: {
     display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     width: '100%',
-    margin: '50px  0 0 0',
+    margin: '10px 0',
   },
-  gridHomeBody: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-    width: '100%',
-    margin: '10px  0',
-  },
-  gridAddToken: {
+  gridMargin: {
     margin: '20px  0',
-  },
-  gridSaveToken: {
-    textAlign: 'right',
-  },
-  inputContainer: {
-    margin: '20px 0 20px 10vw',
-    '@media (min-width:800px)': {
-      margin: '20px 0 20px 80px',
-    },
   },
   input: {
     '& .MuiInputBase-root': {
@@ -132,8 +119,6 @@ const useStyles = makeStyles((theme) => ({
     left: '50%',
     transform: 'translate(-50%, -50%)',
     bgcolor: 'background.paper',
-    border: '2px solid #000',
-    boxShadow: '24px',
   },
   modal: {
     '& .MuiBackdrop-root': {

@@ -18,10 +18,11 @@ function EditToken() {
   const [data, setData] = React.useState<Data>({ token: '', balance: '' });
   const {
     h3,
-    gridItem,
     primaryButton,
     secondaryButton,
     warningButton,
+    gridItemFlexColumn,
+    gridItemFlexSpaceBetween,
   } = useStyles();
 
   const handleChange = (e: React.SyntheticEvent) => {
@@ -38,7 +39,7 @@ function EditToken() {
       <WishWallet />
       <Grid
         item
-        className={gridItem}
+        className={gridItemFlexSpaceBetween}
       >
         <Typography component="h3" className={h3}>
           Add Token
@@ -50,23 +51,27 @@ function EditToken() {
           Voltar
         </CustomButton>
       </Grid>
-      <CustomInput
-        label="Token"
-        name="token"
-        value={data.token}
-        onChange={handleChange}
-        error={false}
-      />
-      <CustomInput
-        label="Balance"
-        name="balance"
-        value={data.balance}
-        onChange={handleChange}
-        error={false}
-      />
+      <Grid item className={gridItemFlexColumn}>
+        <CustomInput
+          label="Token"
+          name="token"
+          value={data.token}
+          onChange={handleChange}
+          error={false}
+        />
+      </Grid>
+      <Grid item className={gridItemFlexColumn}>
+        <CustomInput
+          label="Balance"
+          name="balance"
+          value={data.balance}
+          onChange={handleChange}
+          error={false}
+        />
+      </Grid>
       <Grid
         item
-        className={gridItem}
+        className={gridItemFlexSpaceBetween}
       >
         <CustomButton
           className={warningButton}

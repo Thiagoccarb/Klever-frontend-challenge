@@ -22,7 +22,6 @@ function CustomInput(props: Props) {
   } = props;
   const {
     input,
-    inputContainer,
     label,
   } = useStyles();
   return (

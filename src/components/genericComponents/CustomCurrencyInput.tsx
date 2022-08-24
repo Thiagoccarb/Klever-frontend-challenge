@@ -22,11 +22,12 @@ function CustomCurrencyInput(props: Props) {
     error,
     onChange,
   } = props;
+
   const {
     input,
-    inputContainer,
     label,
   } = useStyles();
+
   return (
     <>
       <InputLabel

@@ -36,11 +36,12 @@ function AddToken() {
 
   const {
     h3,
-    gridItem,
-    gridSaveToken,
+    gridItemFlexFlexEnd,
     primaryButton,
     secondaryButton,
-    inputContainer,
+    gridAddTokenBody,
+    gridItemFlexSpaceBetween,
+    gridItemFlexColumn,
   } = useStyles();
 
   const handleChange = (e: React.SyntheticEvent) => {
@@ -117,28 +118,28 @@ function AddToken() {
       id="add-token-container"
     >
       <WishWallet />
-      <Grid item className={gridItem}>
-        <Typography component="h3" className={h3}>
-          Add Token
-        </Typography>
-        <CustomButton
-          className={secondaryButton}
-          onClick={() => navigate('/tokens')}
-        >
-          Voltar
-        </CustomButton>
-      </Grid>
-      <form onSubmit={submit}>
-        <Grid item className={inputContainer}>
-          <CustomInput
-            error={error}
-            label="Token"
-            name="token"
-            value={data.token}
-            onChange={handleChange}
-          />
+      <Grid item className={gridAddTokenBody}>
+        <Grid item className={gridItemFlexSpaceBetween}>
+          <Typography component="h3" className={h3}>
+            Add Token
+          </Typography>
+          <CustomButton
+            className={secondaryButton}
+            onClick={() => navigate('/tokens')}
+          >
+            Voltar
+          </CustomButton>
         </Grid>
-        <Grid item className={inputContainer}>
+        <form onSubmit={submit}>
+          <Grid item className={gridItemFlexColumn}>
+            <CustomInput
+              error={error}
+              label="Token"
+              name="token"
+              value={data.token}
+              onChange={handleChange}
+            />
+          </Grid>
           <CustomCurrencyInput
             label="Balance"
             name="balance"
@@ -146,13 +147,13 @@ function AddToken() {
             onChange={handleChange}
             error={error}
           />
-        </Grid>
-        <Grid item className={gridSaveToken}>
-          <CustomButton className={primaryButton}>
-            Save
-          </CustomButton>
-        </Grid>
-      </form>
+          <Grid item className={gridItemFlexFlexEnd}>
+            <CustomButton className={primaryButton}>
+              Save
+            </CustomButton>
+          </Grid>
+        </form>
+      </Grid>
       <Loading open={isLoading} />
       <UpdateTokenModal
         open={isOpenModal}

@@ -18,10 +18,9 @@ function Home() {
   const navigate = useNavigate();
   const {
     primaryButton,
-    gridAddToken,
-    gridHomeBody,
-    h2,
-    gridHomeSecondaryHeader,
+    gridMargin,
+    marginLeft,
+    gridItemFlexSpaceBetween,
     gridItemFlex,
     editIcon,
   } = useStyles();
@@ -39,7 +38,7 @@ function Home() {
       id="wallet-container"
     >
       <WishWallet />
-      <Grid item className={gridAddToken}>
+      <Grid item className={gridMargin}>
 
         <CustomButton
           className={primaryButton}
@@ -48,17 +47,17 @@ function Home() {
           Add Token
         </CustomButton>
       </Grid>
-      <Grid item className={gridHomeSecondaryHeader}>
-        <Typography variant="h4" className={h2}>
+      <Grid item className={gridItemFlexSpaceBetween}>
+        <Typography variant="h4" className={marginLeft}>
           Tokens
         </Typography>
-        <Typography variant="h4" className={h2}>
+        <Typography variant="h4" className={marginLeft}>
           Balance
         </Typography>
       </Grid>
       {
         ref.current.map(({ id, balance, token }) => (
-          <Grid item className={gridHomeBody} key={id}>
+          <Grid item className={gridItemFlexSpaceBetween} key={id}>
             <Grid item className={gridItemFlex}>
               <Tooltip title="Edit" placement="left-start">
                 <EditIcon
