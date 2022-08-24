@@ -4,9 +4,7 @@ import { Typography } from '@material-ui/core';
 import { useNavigate } from 'react-router-dom';
 
 import useStyles from '../styles/styles';
-
 import { getLocalStorageKey, saveData } from '../helpers/util';
-
 import {
   WishWallet,
   CustomButton,
@@ -14,15 +12,13 @@ import {
   CustomCurrencyInput,
   Loading,
 } from '../components/genericComponents';
-
 import { UpdateTokenModal } from '../components/modals';
+import { Constants } from '../enums';
 
 interface Data {
   token: string;
   balance: string;
 }
-
-const TOKENS = 'tokens';
 
 function AddToken() {
   const navigate = useNavigate();
@@ -31,7 +27,7 @@ function AddToken() {
   const [isLoading, setLoading] = React.useState<boolean>(false);
   const [isOpenModal, setModal] = React.useState<boolean>(false);
 
-  const tokensRef = React.useRef(getLocalStorageKey(TOKENS));
+  const tokensRef = React.useRef(getLocalStorageKey(Constants.TOKENS));
   const { current: tokens } = tokensRef;
 
   const {
@@ -44,6 +40,8 @@ function AddToken() {
     gridItemFlexColumn,
   } = useStyles();
 
+  const clearFields = () => setData({ token: '', balance: '' });
+
   const handleChange = (e: React.SyntheticEvent) => {
     const { name, value } = e.target as HTMLInputElement;
     setData({ ...data, [name]: value });
@@ -52,8 +50,8 @@ function AddToken() {
   const checkExistingToken = () => {
     if (!tokens) return false;
     return tokens
-      .map(({ token }) => token)
-      .includes(data.token);
+      .map(({ token }) => token.toLocaleLowerCase())
+      .includes(data.token.toLocaleLowerCase());
   };
 
   const openUpdateTokenModal = () => setModal(true);
@@ -99,6 +97,7 @@ function AddToken() {
       return null;
     }
     saveTokenData();
+    clearFields();
     handleLoadingModal();
     return setTimeout(() => navigate('/tokens'), 2000);
   };

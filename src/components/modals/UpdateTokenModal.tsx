@@ -34,6 +34,9 @@ export default function UpdateTokenModal({
     <Modal
       open={open}
       onClose={closeModal}
+      BackdropProps={{
+        timeout: 0,
+      }}
       className={modal}
     >
       <Grid

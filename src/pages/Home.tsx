@@ -8,11 +8,11 @@ import { useNavigate } from 'react-router-dom';
 import useStyles from '../styles/styles';
 import { IToken } from '../interfaces';
 import { getLocalStorageKey } from '../helpers/util';
-
 import {
   WishWallet,
   CustomButton,
 } from '../components/genericComponents';
+import { Constants } from '../enums';
 
 function Home() {
   const navigate = useNavigate();
@@ -23,30 +23,16 @@ function Home() {
     gridItemFlexSpaceBetween,
     gridItemFlex,
     editIcon,
+    gridItemFlexCenter,
   } = useStyles();
 
-  const TOKENS = 'tokens';
+  const data = getLocalStorageKey(Constants.TOKENS) || [] as IToken[] | [];
+  const tokensRef = React.useRef(data);
+  const { current: tokens } = tokensRef;
+  const emptyData = !tokens.length;
 
-  const data = getLocalStorageKey(TOKENS) || [] as IToken[] | [];
-
-  const ref = React.useRef(data);
-
-  return (
-    <Grid
-      container
-      component="section"
-      id="wallet-container"
-    >
-      <WishWallet />
-      <Grid item className={gridMargin}>
-
-        <CustomButton
-          className={primaryButton}
-          onClick={() => navigate('/tokens/add')}
-        >
-          Add Token
-        </CustomButton>
-      </Grid>
+  const TokensElement = (
+    <>
       <Grid item className={gridItemFlexSpaceBetween}>
         <Typography variant="h4" className={marginLeft}>
           Tokens
@@ -56,7 +42,7 @@ function Home() {
         </Typography>
       </Grid>
       {
-        ref.current.map(({ id, balance, token }) => (
+        tokens.map(({ id, balance, token }) => (
           <Grid item className={gridItemFlexSpaceBetween} key={id}>
             <Grid item className={gridItemFlex}>
               <Tooltip title="Edit" placement="left-start">
@@ -74,6 +60,46 @@ function Home() {
             </Typography>
           </Grid>
         ))
+      }
+    </>
+  );
+
+  const EmptyDataElement = (
+    <Grid
+      item
+      className={gridItemFlexCenter}
+    >
+      <Typography
+        variant="h1"
+      >
+        No Token Registered yet.
+      </Typography>
+    </Grid>
+  );
+
+  return (
+    <Grid
+      container
+      component="section"
+      id="wallet-container"
+    >
+      <WishWallet />
+      <Grid item className={gridMargin}>
+
+        <CustomButton
+          className={primaryButton}
+          onClick={() => navigate('/tokens/add')}
+        >
+          Add Token
+        </CustomButton>
+      </Grid>
+      {
+        !emptyData
+        && TokensElement
+      }
+      {
+        emptyData
+        && EmptyDataElement
       }
     </Grid>
   );

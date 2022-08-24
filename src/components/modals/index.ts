@@ -1,2 +1,2 @@
-// eslint-disable-next-line import/prefer-default-export
 export { default as UpdateTokenModal } from './UpdateTokenModal';
+export { default as RemoveTokenModal } from './RemoveTokenModal';

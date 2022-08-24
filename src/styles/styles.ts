@@ -69,6 +69,15 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     width: 'auto',
   },
+  gridItemFlexCenter: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 'auto',
+    height: '100%',
+    padding: '10px',
+    textAlign: 'center',
+  },
   gridItemFlexColumn: {
     display: 'flex',
     flexDirection: 'column',
