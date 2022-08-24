@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
+import EditIcon from '@mui/icons-material/Edit';
+import Tooltip from '@mui/material/Tooltip';
+import { useNavigate } from 'react-router-dom';
 
 import useStyles from '../styles/styles';
 import { IToken } from '../interfaces';
@@ -12,8 +15,15 @@ import {
 } from '../components/genericComponents';
 
 function Home() {
+  const navigate = useNavigate();
   const {
-    primaryButton, gridAddToken, gridHomeBody, h2, gridHomeSecondaryHeader,
+    primaryButton,
+    gridAddToken,
+    gridHomeBody,
+    h2,
+    gridHomeSecondaryHeader,
+    gridItemFlex,
+    editIcon,
   } = useStyles();
 
   const TOKENS = 'tokens';
@@ -29,47 +39,38 @@ function Home() {
       id="wallet-container"
     >
       <WishWallet />
-      <Grid
-        item
-        className={gridAddToken}
-      >
+      <Grid item className={gridAddToken}>
 
         <CustomButton
           className={primaryButton}
-          onClick={() => console.log(ref)}
-
+          onClick={() => navigate('/tokens/add')}
         >
           Add Token
         </CustomButton>
       </Grid>
-      <Grid
-        item
-        className={gridHomeSecondaryHeader}
-      >
-        <Typography
-          variant="h4"
-          className={h2}
-        >
+      <Grid item className={gridHomeSecondaryHeader}>
+        <Typography variant="h4" className={h2}>
           Tokens
         </Typography>
-        <Typography
-          variant="h4"
-          className={h2}
-        >
+        <Typography variant="h4" className={h2}>
           Balance
         </Typography>
       </Grid>
       {
         ref.current.map(({ id, balance, token }) => (
-          <Grid
-            item
-            className={gridHomeBody}
-            key={id}
-          >
-            <Typography className={h2} variant="h2">
-              {token}
-            </Typography>
-            <Typography className={h2} variant="h2">
+          <Grid item className={gridHomeBody} key={id}>
+            <Grid item className={gridItemFlex}>
+              <Tooltip title="Edit" placement="left-start">
+                <EditIcon
+                  className={editIcon}
+                  onClick={() => navigate(`/tokens/edit/${id}`)}
+                />
+              </Tooltip>
+              <Typography variant="h2">
+                {token.toLocaleUpperCase()}
+              </Typography>
+            </Grid>
+            <Typography variant="h2">
               {balance}
             </Typography>
           </Grid>

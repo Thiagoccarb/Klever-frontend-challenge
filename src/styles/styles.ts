@@ -9,7 +9,7 @@ const buttonStyles = (theme: Theme) => ({
   fontWeight: 700,
   height: 'fit-content',
   width: '100px',
-  '&: hover': {
+  '&:hover': {
     cursor: 'pointer',
     backgroundColor: alpha(theme.palette.primary.main, 0.9),
   },
@@ -26,10 +26,18 @@ const useStyles = makeStyles((theme) => ({
     height: '-webkit-fill-available',
   },
   h2: {
-    marginLeft: '50px',
+    marginLeft: '32px',
   },
   h3: {
     fontWeight: 700,
+  },
+  editIcon: {
+    '&.MuiSvgIcon-root': {
+      color: '#fff',
+      width: '12px',
+      margin: '0 10px',
+      '&:hover': { cursor: 'pointer' },
+    },
   },
   primaryButton: {
     backgroundColor: theme.palette.primary.main,
@@ -47,17 +55,22 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: '0 0 0 10vw',
+    margin: '20px 0 0 10vw',
     '@media (min-width:800px)': {
       margin: '0 0 0 80px',
     },
+  },
+  gridItemFlex: {
+    display: 'flex',
+    alignItems: 'center',
+    width: 'auto',
   },
   gridHomeSecondaryHeader: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'space-between',
     width: '100%',
-    margin: '30px  0 0 0',
+    margin: '50px  0 0 0',
   },
   gridHomeBody: {
     display: 'flex',

@@ -1,6 +1,8 @@
 import * as React from 'react';
 import Grid from '@material-ui/core/Grid';
 import { Typography } from '@material-ui/core';
+import { useNavigate } from 'react-router-dom';
+
 import useStyles from '../styles/styles';
 
 import { getLocalStorageKey, saveData } from '../helpers/util';
@@ -20,6 +22,7 @@ interface Data {
 const TOKENS = 'tokens';
 
 function AddToken() {
+  const navigate = useNavigate();
   const [data, setData] = React.useState<Data>({ token: '', balance: '' });
   const [error, setError] = React.useState<boolean>(false);
 
@@ -67,7 +70,7 @@ function AddToken() {
         </Typography>
         <CustomButton
           className={secondaryButton}
-          onClick={() => { }}
+          onClick={() => navigate('/tokens')}
         >
           Voltar
         </CustomButton>
