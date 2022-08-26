@@ -11,6 +11,7 @@ export default function Loading({ open }: IProps) {
       <Backdrop
         sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={open}
+        data-testid="spinner"
       >
         <CircularProgress color="inherit" />
       </Backdrop>

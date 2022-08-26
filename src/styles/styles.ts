@@ -64,6 +64,13 @@ const useStyles = makeStyles((theme) => ({
     margin: '10px  0',
     alignItems: 'center',
   },
+  gridItemFlexSpaceBetweenWithMargin: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    width: '100%',
+    margin: '50px 0 10px 0',
+    alignItems: 'center',
+  },
   gridItemFlex: {
     display: 'flex',
     alignItems: 'center',
@@ -82,16 +89,27 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
-    margin: '10px 0',
+    margin: '30px 0',
   },
   gridItemFlexFlexEnd: {
     display: 'flex',
     justifyContent: 'flex-end',
     width: '100%',
-    margin: '10px 0',
+    margin: '30px 0',
   },
   gridMargin: {
     margin: '20px  0',
+  },
+  gridMarginLeft: {
+    '@media (max-width:900px)': {
+      marginLeft: '-30px',
+    },
+    '@media (min-width:901px) and (max-width:1400px)': {
+      marginLeft: '-40px',
+    },
+    '@media (min-width:1401px)': {
+      marginLeft: '-60px',
+    },
   },
   input: {
     '& .MuiInputBase-root': {

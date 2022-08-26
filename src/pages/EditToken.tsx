@@ -31,20 +31,21 @@ function EditToken() {
   const [isLoading, setLoading] = React.useState<boolean>(false);
   const [isOpenModal, setModal] = React.useState<boolean>(false);
 
-  const tokensRef: React.MutableRefObject<IToken[] | []> = React.useRef([]);
+  const tokensRef = React.useRef(getLocalStorageKey(Constants.TOKENS))
+    || [] as IToken[] | [];
+  const { current: tokens } = tokensRef;
 
   const getData = () => {
-    const tokens = getLocalStorageKey(Constants.TOKENS) || [] as IToken[] | [];
-    const tokenData = tokens.find((item) => item.id === id);
-    const { token, balance } = tokenData as IToken;
+    const tokenData = tokens?.find((item) => item.id === id) || {};
+    const { token = '', balance = '0' } = tokenData as IToken;
     setData({ token, balance });
-    tokensRef.current = tokens;
   };
 
   const {
     h3,
     primaryButton,
     secondaryButton,
+    gridMarginLeft,
     warningButton,
     gridItemFlexColumn,
     gridItemFlexSpaceBetween,
@@ -111,7 +112,12 @@ function EditToken() {
       component="section"
       id="add-token-container"
     >
-      <WishWallet />
+      <Grid
+        item
+        className={gridMarginLeft}
+      >
+        <WishWallet />
+      </Grid>
       <Grid item className={gridItemFlexSpaceBetween}>
         <Typography component="h3" className={h3}>
           Add Token
@@ -131,6 +137,7 @@ function EditToken() {
             value={data.token}
             onChange={handleChange}
             error={error}
+            dataTestId="token-input"
           />
         </Grid>
         <Grid item className={gridItemFlexColumn}>
@@ -140,6 +147,7 @@ function EditToken() {
             value={data.balance}
             onChange={handleChange}
             error={error}
+            dataTestId="balance-input"
           />
         </Grid>
         <Grid item className={gridItemFlexSpaceBetween}>

@@ -10,6 +10,8 @@ type Props = {
   value: string;
   onChange: (e: React.SyntheticEvent) => void;
   error: boolean;
+  dataTestId: string;
+
 }
 
 function CustomInput(props: Props) {
@@ -19,6 +21,7 @@ function CustomInput(props: Props) {
     name,
     error,
     onChange,
+    dataTestId,
   } = props;
   const {
     input,
@@ -32,6 +35,9 @@ function CustomInput(props: Props) {
         {labelName}
       </InputLabel>
       <TextField
+        inputProps={{
+          'data-testid': dataTestId,
+        }}
         error={error}
         value={value}
         name={name}

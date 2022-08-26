@@ -23,7 +23,7 @@ function InitialPage() {
         className={header}
         component="header"
       >
-        <img src={logo} alt="Klever-logo" id="logo" />
+        <img src={logo} data-testid="klever-image" alt="Klever-logo" id="logo" />
       </Grid>
       <Outlet />
     </Grid>

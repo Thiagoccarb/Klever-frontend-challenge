@@ -10,6 +10,7 @@ type Props = {
   label: string;
   name: string;
   value: string;
+  dataTestId: string;
   onChange: (e: React.SyntheticEvent) => void;
   error: boolean;
 }
@@ -21,6 +22,7 @@ function CustomCurrencyInput(props: Props) {
     name,
     error,
     onChange,
+    dataTestId,
   } = props;
 
   const {
@@ -37,6 +39,9 @@ function CustomCurrencyInput(props: Props) {
       </InputLabel>
       <CurrencyInput
         error={error}
+        inputProps={{
+          'data-testid': dataTestId,
+        }}
         value={value}
         name={name}
         onChange={onChange}

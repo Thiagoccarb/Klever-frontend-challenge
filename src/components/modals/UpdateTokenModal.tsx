@@ -38,6 +38,7 @@ export default function UpdateTokenModal({
         timeout: 0,
       }}
       className={modal}
+      data-testid="modal"
     >
       <Grid
         container
@@ -58,6 +59,7 @@ export default function UpdateTokenModal({
               value={value}
               onChange={onChange}
               error={false}
+              dataTestId="balance-input"
             />
             <Grid item className={gridItemFlexSpaceBetween}>
               <CustomButton

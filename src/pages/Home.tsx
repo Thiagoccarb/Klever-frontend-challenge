@@ -21,6 +21,7 @@ function Home() {
     gridMargin,
     marginLeft,
     gridItemFlexSpaceBetween,
+    gridItemFlexSpaceBetweenWithMargin,
     gridItemFlex,
     editIcon,
     gridItemFlexCenter,
@@ -33,7 +34,7 @@ function Home() {
 
   const TokensElement = (
     <>
-      <Grid item className={gridItemFlexSpaceBetween}>
+      <Grid item className={gridItemFlexSpaceBetweenWithMargin}>
         <Typography variant="h4" className={marginLeft}>
           Tokens
         </Typography>
@@ -47,6 +48,7 @@ function Home() {
             <Grid item className={gridItemFlex}>
               <Tooltip title="Edit" placement="left-start">
                 <EditIcon
+                  data-testid={`edit-icon-${token}`}
                   className={editIcon}
                   onClick={() => navigate(`/tokens/edit/${id}`)}
                 />

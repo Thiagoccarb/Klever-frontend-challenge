@@ -24,10 +24,13 @@ const theme = createTheme({
       padding: 0,
       margin: 0,
       color: '#fff',
-      fontSize: '5vmin',
+      fontSize: '4.2vmin',
       fontWeight: 700,
       '@media (max-width:400px)': {
-        fontSize: '20px',
+        fontSize: '16px',
+      },
+      '@media (min-width:1401px)': {
+        fontSize: '50px',
       },
     },
     h2: {

@@ -36,6 +36,7 @@ export default function UpdateTokenModal({
       BackdropProps={{
         timeout: 0,
       }}
+      data-testid="remove-modal"
     >
       <Grid
         container

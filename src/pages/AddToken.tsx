@@ -35,9 +35,9 @@ function AddToken() {
     gridItemFlexFlexEnd,
     primaryButton,
     secondaryButton,
-    gridAddTokenBody,
     gridItemFlexSpaceBetween,
     gridItemFlexColumn,
+    gridMarginLeft,
   } = useStyles();
 
   const clearFields = () => setData({ token: '', balance: '' });
@@ -116,8 +116,13 @@ function AddToken() {
       component="section"
       id="add-token-container"
     >
-      <WishWallet />
-      <Grid item className={gridAddTokenBody}>
+      <Grid
+        item
+        className={gridMarginLeft}
+      >
+        <WishWallet />
+      </Grid>
+      <Grid item>
         <Grid item className={gridItemFlexSpaceBetween}>
           <Typography component="h3" className={h3}>
             Add Token
@@ -137,6 +142,7 @@ function AddToken() {
               name="token"
               value={data.token}
               onChange={handleChange}
+              dataTestId="token-input"
             />
           </Grid>
           <CustomCurrencyInput
@@ -145,6 +151,7 @@ function AddToken() {
             value={data.balance}
             onChange={handleChange}
             error={error}
+            dataTestId="balance-input"
           />
           <Grid item className={gridItemFlexFlexEnd}>
             <CustomButton className={primaryButton}>

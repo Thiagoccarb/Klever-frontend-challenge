@@ -10,7 +10,7 @@ function WishWallet() {
       container
       id="wish-wallet-container"
     >
-      <img src={logo} alt="shooting-star-logo" width="20vw" id="star-logo" />
+      <img src={logo} data-testid="shooting-star-logo" alt="shooting-star-logo" width="20vw" id="star-logo" />
       <Typography variant="h1">
         Wish Wallet
       </Typography>
